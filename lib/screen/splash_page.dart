@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     Timer.periodic(
       Duration(seconds:2),
       (timer) {
-        Navigator.of(context).pushReplacementNamed('/');
+        Navigator.of(context).pushReplacementNamed('/add');
       },
     );
     return Scaffold(
@@ -39,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
           Text.rich(
             TextSpan(
               children: [
-                TextSpan(
+                const TextSpan(
                   text: 'Invoice',
                   style: TextStyle(
                       color: Colors.white,
@@ -56,8 +56,8 @@ class _SplashPageState extends State<SplashPage> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CircularProgressIndicator(color: Colors.white,backgroundColor: Colors.blue,),
           )
         ],
