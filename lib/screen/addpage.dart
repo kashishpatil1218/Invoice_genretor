@@ -51,9 +51,16 @@ class _AddpageState extends State<Addpage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(CupertinoIcons.add),
+        onPressed: () {
+
+             Map map
+        },
+
+
+    child: const Icon(CupertinoIcons.add),
       ),
     );
   }
 }
+
+List data=[];
