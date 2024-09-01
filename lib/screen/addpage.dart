@@ -53,7 +53,7 @@ class _AddpageState extends State<Addpage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
 
-             Map map
+
         },
 
 
