@@ -1,0 +1,134 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:invoiceapp/utils/colors.dart';
+import 'package:invoiceapp/utils/global.dart';
+
+class Editpage extends StatefulWidget {
+  const Editpage({super.key});
+
+  @override
+  State<Editpage> createState() => _EditpageState();
+}
+
+class _EditpageState extends State<Editpage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primatyColor,
+        leading: const Icon(
+          Icons.menu,
+          color: Colors.white,
+        ),
+        centerTitle: true,
+        title: const Text(
+          "Card Page",
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.w800, fontSize: 18),
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: showItemsList.length,
+        itemBuilder: (context, index) {
+          final product = showItemsList[index];
+          return Card(
+            elevation: 8.0,
+            margin: EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: ListTile(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                title: Text(
+                  product.name.toString(),
+                  style: TextStyle(color: secColor),
+                ),
+                subtitle: Text(
+                  product.price.toString(),
+                  style: TextStyle(color: Colors.grey),
+                ),
+                trailing: SizedBox(
+                  width: 160,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 112,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  addItems[index].quantity--;
+                                  addItems.remove(showItemsList[index]);
+                                  if (addItems[index].quantity == 0) {
+                                    showItemsList.remove(showItemsList[index]);
+                                  }
+                                });
+                              },
+                              icon: Icon(Icons.remove),
+                            ),
+                            Spacer(),
+                            Text(
+                              addItems[index].quantity.toString(),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
+                            Spacer(),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  addItems[index].quantity++;
+                                  addItems.add(showItemsList[index]);
+                                });
+                              },
+                              icon: Icon(Icons.add),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showItemsList.remove(showItemsList[index]);
+                            addItems.remove(addItems[index]);
+                          });
+                        },
+                        icon: Icon(Icons.delete_outline),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: primatyColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+
+
+
+          child: Center(
+              child: Text(
+            '${payment()} pay',
+            style: TextStyle(color: Colors.white,fontSize:18),
+          )),
+        ),
+      ),
+    );
+  }
+}
